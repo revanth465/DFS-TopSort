@@ -1,0 +1,22 @@
+************************INSTRUCTIONS FOR THE CODE*********************
+
+
+***The code in this project is compiled in JAVA programminlanguage mentioned as test.java
+***The compiler used in execution of code is NetBeans IDE 8.0.2
+***Code:
+	Methods used in the code are  DFS(),DFS_visit(). 
+
+***  Indications for using the code:
+    *In the zip folder, I have provided the input files as graph1.xls and graph2.xls 
+	*I have converted the .csv formatted files to .xls formatted files since jxl.jar library in java supports only .xls formatted files [97-2003 workbook], we dont have any library in java that accepts .csv formatted files as input.
+	*I have included a jxl.jar library file in the zip folder as well as link here "http://www.java2s.com/Code/JarDownload/jxl/jxl.jar.zip". This file needs to be imported in the project's library folder and then run the test1.java file.
+	*The code is indicated with comment line and user should manually give the location of file address
+	*The code can be compiled by any Java compiler. Make sure the class name is same as file name.
+	*Once the code is compiled, automatically .java file is generated which can be clicked and run.
+	
+***	This code accepts only .xls formatted files, we can change the .csv to .xls since this doesn't effect the input values, it just changes the file to other format ***
+	
+
+**** Please note: Files to be given only in .xls file [97-2003 workbook] since we dont have any library in java which accepts .csv files as input ***
+**** For Compiling use standard compilers in java like NetBeans or Eclipse. ****
+

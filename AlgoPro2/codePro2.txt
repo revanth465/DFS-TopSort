@@ -1,0 +1,95 @@
+package graphalgos;
+import static graphalgos.algo_dcg.Depth_first_search;
+import java.io.File;
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+class algo_dcg{ // class which contains depth first search algorithm
+    static int ans_pre_vertex[]= new int[50];
+    static int color_change[]=new int[50];
+    static int curr_time[][]=new int[50][2];
+    static int runtime;
+    static boolean check=false;
+    static int topo_list[]=new int[50];
+    static int high=49;
+   
+    public static void Depth_first_search(int a[][]){ // Method for Depth_first_search
+		 for(int i=0;i<50;i++){
+			 color_change[i]=1;
+			 ans_pre_vertex[i]=-1;
+		 }
+		 runtime=0;
+		 for(int i=0;i<50;i++){
+			 if(color_change[i]==1){
+				 Depth_first_visit(a,i);
+			 }
+		 }
+	 }
+	public static void Depth_first_visit(int arrayInput[][],int vertex){  // method for Depth_first_visit
+             runtime=runtime+1;
+		 curr_time[vertex][0]=runtime;
+		 color_change[vertex]=2;
+		 for(int i=0;i<50;i++){
+			 if(arrayInput[vertex][i]==1){
+				 if(color_change[i]==1){
+					 ans_pre_vertex[i]=vertex; 
+					 Depth_first_visit(arrayInput,i);
+				 }
+			  else if(color_change[i]==2){
+				  if(i!=vertex){
+					 System.out.println("One");
+                                         System.out.print("The cycle formed is"+"\n"+vertex+"------->");
+                                         int m=vertex;
+					 while(ans_pre_vertex[m]!=i){
+                                             System.out.print(ans_pre_vertex[m]+"------->");
+						 m=ans_pre_vertex[m];
+					 }
+                                         System.out.print(i);
+                                         check=true;
+				 }
+				  else{
+					  System.out.println("\n"+"check at "+i+" to "+i);
+				  }
+			 }
+		 }}
+		 color_change[vertex]=3;
+                 topo_list[high]=vertex;
+                 high--;
+		 runtime=runtime+1;
+		 curr_time[vertex][1]=runtime;
+	 }   
+}
+public class test1 { // class which has main method
+public static void main(String[] args) throws Exception {
+        int inputArray[][]=new int[50][50];
+        File f= new File("C:\\Users\\revanth\\Desktop\\graph1.xls");  // location of file to be mentioned here
+        Workbook wb=Workbook.getWorkbook(f);
+        Sheet s=wb.getSheet(0);
+        int rows=s.getRows();
+        int columns=s.getColumns();
+                for(int i=0;i<rows;i++){
+                     for(int j=0;j<columns;j++)
+                     {
+Cell cell = s.getCell(j, i);
+inputArray[i][j]=Integer.parseInt(cell.getContents()); // values from the graph are stored here in the array
+}
+                }
+    
+        Depth_first_search(inputArray); // calling the method Depth_first_search in class algo_dcg
+        try {
+		    if(!(algo_dcg.check)){
+		    	System.out.println("Topological ordering for the graph is : ");
+		    	for(int n=0;n<50;n++){
+		    		System.out.print(algo_dcg.topo_list[n]+"  "); // prints the vertices for topological ordering
+		    		
+		    	}
+		    }
+} 
+        catch(Exception e){
+		    System.out.println(e);
+		}
+    
+}
+}
+
+    
